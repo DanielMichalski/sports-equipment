@@ -3,10 +3,6 @@ package ui.login.view;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Author: Daniel
- * Date: 24.11.13
- */
 public class FormPanel extends JPanel {
     private JTextField lastNameTF;
     private JPasswordField passwordPF;

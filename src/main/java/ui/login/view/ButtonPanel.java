@@ -2,10 +2,6 @@ package ui.login.view;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Author: Daniel
- * Date: 24.11.13
- */
 public class ButtonPanel extends JPanel {
     private JButton loginBtn;
 

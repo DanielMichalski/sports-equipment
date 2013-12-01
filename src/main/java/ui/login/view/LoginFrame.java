@@ -5,14 +5,10 @@ import ui.login.controller.LoginPresenter;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Author: Daniel
- * Date: 24.11.13
- */
 public class LoginFrame extends JFrame  {
 
     public static final int WIDTH = 240;
-    public static final int HEIGHT = 160;
+    public static final int HEIGHT = 140;
 
     public LoginFrame() {
         setUpFrame();

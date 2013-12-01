@@ -1,13 +1,11 @@
 package ui.login.controller;
 
+import ui.admin.admin_choose.view.AdminChooseFrame;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Author: Daniel
- * Date: 24.11.13
- */
 public class LoginPresenter {
     private JTextField lastNameTF;
     private JPasswordField passwordPF;
@@ -28,9 +26,16 @@ public class LoginPresenter {
 
     private void loginUser() {
         saveFormData();
+        clearForm();
 
-        System.out.println("Loguj");
-        System.out.println("pass: " + passwordPF.getText());
+        AdminChooseFrame frame = new AdminChooseFrame();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    private void clearForm() {
+        lastNameTF.setText("");
+        passwordPF.setText("");
     }
 
     private void saveFormData() {
