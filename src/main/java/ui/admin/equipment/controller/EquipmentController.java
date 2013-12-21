@@ -1,5 +1,6 @@
 package ui.admin.equipment.controller;
 
+import dao.EquipmentsDao;
 import model.Client;
 import model.Equimpent;
 import ui.admin.equipment.models.EquipmentTableModel;
@@ -28,11 +29,14 @@ public class EquipmentController {
 
     public void onSaveClick() {
         int selectedRowIndex = clientTable.getSelectedRow();
+        int wybranaIlosc = Integer.parseInt(formPanel.getIloscSztukSpinner().getValue().toString());
 
-        if (formPanel.getMarkaTF().getText().equals("") || formPanel.getModelTF().getText().equals("")) {
+        if (formPanel.getMarkaTF().getText().equals("")||
+                formPanel.getModelTF().getText().equals("") ||
+                wybranaIlosc <= 0) {
             JOptionPane.showMessageDialog(
                     null,
-                    "Marka i model muszą być uzupełnione.",
+                    "Marka i model muszą być uzupełnione oraz ilość musi być wikększa od zera.",
                     Const.Strings.INFORMATION,
                     JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -52,31 +56,12 @@ public class EquipmentController {
     }
 
     public void zapiszDaneDoPliku() {
-        try {
-            FileOutputStream fos = new FileOutputStream("ListaTowarow.dat");
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
-            ObjectOutputStream oos = new ObjectOutputStream(bos);
-
-            List<Equimpent> equimpents = equipmentTableModel.getEquimpents();
-
-            oos.writeObject(equimpents);
-            oos.close();
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
+        List<Equimpent> equimpents = equipmentTableModel.getEquimpents();
+        EquipmentsDao.zapiszDaneDoPliku(equimpents);
     }
 
-    public ArrayList<Equimpent> odczytajDaneZPliku() {
-        try {
-            FileInputStream fis = new FileInputStream("ListaTowarow.dat");
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            ObjectInputStream ois = new ObjectInputStream(bis);
-
-            ArrayList<Equimpent> equimpents = (ArrayList<Equimpent>)ois.readObject();
-            return equimpents;
-        } catch (Exception e) {
-            return null;
-        }
+    public List<Equimpent> odczytajDaneZPliku() {
+        return EquipmentsDao.odczytajDaneZPliku();
     }
 
     public void onCancelClick() {

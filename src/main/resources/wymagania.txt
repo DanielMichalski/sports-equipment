@@ -1,0 +1,13 @@
+﻿1. Dodaj rezerwację: klient będzie mógł wybrać sprzęt w ilości nieprzekraczającej tej w magazynie, następnie zostanie podsumowany i jego zamówienie zostanie dodane do listy zamówień.
+2. Sprawdź rezerwację: wyświetlą się wszystkie zamówienia na to nazwisko oraz suma za wszystkie zamówienia.
+3. Usuń rezerwację: klient będzie mógł wybrać, które zamówienie chce usunąć. 
+4. Lista sprzętu: wyświetli się lista dostępnego sprzętu.
+5. Wylogowanie: wyświetli się ekran logowania.
+6. Wyjście.
+
+Jeśli będzie to admin, wyświetlą się dane opcje:
+1. Edycja klientów: wyświetli się lista bieżących klientów (czyli jeden) oraz opcja usunięcia bądź dodania nowego. 
+2. Edycja sprzętu: wyświetli się lista sprzętu oraz opcja dodania, usunięcia lub edycji (zmiany nazwy, ceny i/lub ilości) sprzętu.
+3. Edycja rezerwacji: wyświetli się lista rezerwacji oraz opcja dodania, usunięcia lub edycji (ilości sprzętu) rezerwacji.
+4. Lista sprzętu: jak wyżej.
+6. Wyjście.

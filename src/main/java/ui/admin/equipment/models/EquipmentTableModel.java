@@ -1,16 +1,13 @@
 package ui.admin.equipment.models;
 
-import model.Client;
 import model.Equimpent;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class EquipmentTableModel extends AbstractTableModel {
-    private String[] columnNames = new String[]{"Marka oraz model", "Przeznaczenie", "Typ sprzętu"};
+    private String[] columnNames = new String[]{"Marka oraz model", "Przeznaczenie", "Typ sprzętu", "Ilość sztuk"};
     private List<Equimpent> equimpents;
 
     @Override
@@ -54,7 +51,9 @@ public class EquipmentTableModel extends AbstractTableModel {
             case 1:
                 return equimpent.getPrzeznaczenie().toString();
             case 2:
-                return equimpent.getOkresWypozyczenia();
+                return equimpent.getTypSprzetu();
+            case 3:
+                return equimpent.getIloscSztuk();
             default:
                 return "";
         }

@@ -8,13 +8,19 @@ public class Equimpent implements Serializable {
     String marka;
     String model;
     Przeznaczenie przeznaczenie;
-    TypSprzetu okresWypozyczenia;
+    TypSprzetu typSprzetu;
+    int iloscSztuk;
 
-    public Equimpent(String marka, String model, Przeznaczenie przeznaczenie, TypSprzetu okresWypozyczenia) {
+    public Equimpent(String marka, String model, Przeznaczenie przeznaczenie, TypSprzetu typSprzetu, int iloscSztuk) {
         this.marka = marka;
         this.model = model;
         this.przeznaczenie = przeznaczenie;
-        this.okresWypozyczenia = okresWypozyczenia;
+        this.typSprzetu = typSprzetu;
+        this.iloscSztuk = iloscSztuk;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -33,11 +39,18 @@ public class Equimpent implements Serializable {
         return przeznaczenie;
     }
 
-    public TypSprzetu getOkresWypozyczenia() {
-        return okresWypozyczenia;
+    public TypSprzetu getTypSprzetu() {
+        return typSprzetu;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIloscSztuk() {
+        return iloscSztuk;
+    }
+
+    @Override
+    public String toString() {
+        return  marka + " " +
+                model + ", " +
+                "ilość dostępnych sztuk: " + iloscSztuk;
     }
 }

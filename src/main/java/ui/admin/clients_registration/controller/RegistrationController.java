@@ -1,8 +1,11 @@
 package ui.admin.clients_registration.controller;
 
+import dao.ClientsDao;
+import javafx.application.Application;
 import model.Client;
 import ui.admin.clients_registration.models.ClientTableModel;
 import ui.admin.clients_registration.view.client_data.FormPanel;
+import ui.login.view.LoginFrame;
 import util.Const;
 
 import javax.swing.*;
@@ -53,31 +56,12 @@ public class RegistrationController {
     }
 
     public void zapiszDaneDoPliku() {
-        try {
-            FileOutputStream fos = new FileOutputStream("ListaKlientow.dat");
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
-            ObjectOutputStream oos = new ObjectOutputStream(bos);
-
-            List<Client> clients = clientTableModel.getClients();
-
-            oos.writeObject(clients);
-            oos.close();
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
+        List<Client> clients = clientTableModel.getClients();
+        ClientsDao.zapiszDaneDoPliku(clients);
     }
 
-    public ArrayList<Client> odczytajDaneZPliku() {
-        try {
-            FileInputStream fis = new FileInputStream("ListaKlientow.dat");
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            ObjectInputStream ois = new ObjectInputStream(bis);
-
-            ArrayList<Client> clients = (ArrayList<Client>)ois.readObject();
-            return clients;
-        } catch (Exception e) {
-            return null;
-        }
+    public List<Client> odczytajDaneZPliku() {
+        return ClientsDao.odczytajDaneZPliku();
     }
 
     public void onCancelClick() {

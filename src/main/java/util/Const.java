@@ -16,6 +16,7 @@ public class Const {
     public static interface Labels {
         String NAME = "Imię:";
         String SURNAME = "Nazwisko:";
+        String PASSWORD = "Hasło:";
         String GENDER = "Płeć:";
         String PROFESSION = "Zawód:";
     }
@@ -25,7 +26,7 @@ public class Const {
     }
 
     public static interface MenuItem {
-        String CLOSE_MENU_ITEM = "Zamknij CTRL + X";
+        String CLOSE_MENU_ITEM = "Zamknij";
     }
 
     public static interface Strings {

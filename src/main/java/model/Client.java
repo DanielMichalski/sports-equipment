@@ -8,22 +8,25 @@ public class Client implements Serializable {
     private int id;
     private String imie;
     private String nazwisko;
+    private String haslo;
     private Plec plec;
     private Zawod zawod;
     private List<Survey> surveys;
 
-    public Client(String imie, String nazwisko, Plec plec, Zawod zawod) {
+    public Client(String imie, String nazwisko, String haslo, Plec plec, Zawod zawod) {
         this.imie = imie;
         this.nazwisko = nazwisko;
+        this.haslo = haslo;
         this.plec = plec;
         this.zawod = zawod;
         this.surveys = new ArrayList<Survey>();
     }
 
-    public Client(int id, String imie, String nazwisko, Plec plec, Zawod zawod) {
+    public Client(int id, String imie, String nazwisko, String haslo, Plec plec, Zawod zawod) {
         this.id = id;
         this.imie = imie;
         this.nazwisko = nazwisko;
+        this.haslo = haslo;
         this.plec = plec;
         this.zawod = zawod;
         this.surveys = new ArrayList<Survey>();
@@ -43,6 +46,10 @@ public class Client implements Serializable {
 
     public Zawod getZawod() {
         return zawod;
+    }
+
+    public String getHaslo() {
+        return haslo;
     }
 
     public List<Survey> getSurveys() {

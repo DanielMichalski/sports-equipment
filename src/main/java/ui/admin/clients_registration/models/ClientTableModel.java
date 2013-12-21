@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ClientTableModel extends AbstractTableModel {
-    private String[] columnNames = new String[]{"Imię i nazwisko", "Płeć", "Zawód"};
+    private String[] columnNames = new String[]{"Imię i nazwisko", "Hasło", "Płeć", "Zawód"};
     private List<Client> clients;
     private List<Client> filteredClients;
 
@@ -70,8 +70,10 @@ public class ClientTableModel extends AbstractTableModel {
             case 0:
                 return client.getImie() + " " + client.getNazwisko();
             case 1:
-                return client.getPlec().toString().charAt(0);
+                return client.getHaslo();
             case 2:
+                return client.getPlec().toString().charAt(0);
+            case 3:
                 return client.getZawod();
             default:
                 return "";

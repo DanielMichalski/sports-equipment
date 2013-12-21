@@ -16,6 +16,7 @@ public class FormPanel extends JPanel {
 
     private JTextField imieTF;
     private JTextField nazwiskoTF;
+    private JPasswordField hasloPF;
 
     ButtonGroup radioBtnGroup;
     private JRadioButton kobietaRB;
@@ -29,9 +30,9 @@ public class FormPanel extends JPanel {
     }
 
     private void setUpPanel() {
-        GridLayout layout = new GridLayout(6, 2);
-        layout.setVgap(15);
+        GridLayout layout = new GridLayout(7, 2);
         setLayout(layout);
+        layout.setVgap(7);
         setBorder(new TitledBorder("Rejestracja klientów"));
     }
 
@@ -41,6 +42,9 @@ public class FormPanel extends JPanel {
 
         JLabel nazwiskoLbl = new JLabel(Const.Labels.SURNAME);
         nazwiskoTF = new JTextField();
+
+        JLabel hasloLb = new JLabel(Const.Labels.PASSWORD);
+        hasloPF = new JPasswordField();
 
         JPanel radioBtnPanel = new JPanel();
         JLabel płecLbl = new JLabel(Const.Labels.GENDER);
@@ -62,6 +66,9 @@ public class FormPanel extends JPanel {
         add(nazwiskoLbl);
         add(nazwiskoTF);
 
+        add(hasloLb);
+        add(hasloPF);
+
         add(płecLbl);
         add(radioBtnPanel);
 
@@ -75,6 +82,7 @@ public class FormPanel extends JPanel {
         return new Client(
                 imieTF.getText(),
                 nazwiskoTF.getText(),
+                String.valueOf(hasloPF.getPassword()),
                 getGenderFromFields(),
                 (Zawod) zawodCB.getSelectedItem());
     }
@@ -89,6 +97,7 @@ public class FormPanel extends JPanel {
     public void clearForm() {
         imieTF.setText("");
         nazwiskoTF.setText("");
+        hasloPF.setText("");
         kobietaRB.setSelected(true);
         zawodCB.getModel().setSelectedItem(Zawod.student);
     }
@@ -96,6 +105,7 @@ public class FormPanel extends JPanel {
     public void fillForm(Client client) {
         imieTF.setText(client.getImie());
         nazwiskoTF.setText(client.getNazwisko());
+        hasloPF.setText(client.getHaslo());
         if (client.getPlec() == Plec.Mężczyzna) mezczyznaRB.setSelected(true);
         else kobietaRB.setSelected(true);
         zawodCB.getModel().setSelectedItem(client.getZawod());
@@ -107,5 +117,9 @@ public class FormPanel extends JPanel {
 
     public JTextField getNazwiskoTF() {
         return nazwiskoTF;
+    }
+
+    public JPasswordField getHasloPF() {
+        return hasloPF;
     }
 }

@@ -3,6 +3,7 @@ package ui.admin.clients_registration.view;
 import ui.admin.clients_registration.controller.RegistrationController;
 import ui.admin.clients_registration.view.client_data.ClientLeftPanel;
 import ui.admin.clients_registration.view.client_table.ClientTablePanel;
+import ui.login.view.LoginFrame;
 import util.Const;
 import util.Utils;
 
@@ -28,8 +29,6 @@ public class RegistrationFrame extends JDialog {
         Utils.setWindowsLookAndFeel();
         setModal(true);
 
-        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-        manager.addKeyEventDispatcher(new MyDispatcher());
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -52,24 +51,29 @@ public class RegistrationFrame extends JDialog {
         JMenu aplikacjaMenu = new JMenu(Const.Menu.APPLICATION_MENU);
         menuBar.add(aplikacjaMenu);
 
+        JMenuItem wylogujMenuItem = new JMenuItem("Wyloguj");
+        wylogujMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+
+                LoginFrame loginFrame = new LoginFrame();
+                loginFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+                loginFrame.setVisible(true);
+            }
+        });
+
         JMenuItem zamknijItem = new JMenuItem(Const.MenuItem.CLOSE_MENU_ITEM);
-        zamknijItem.setAccelerator(KeyStroke.getKeyStroke("control c"));
         zamknijItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-        aplikacjaMenu.add(zamknijItem);
-        return menuBar;
-    }
 
-    private class MyDispatcher implements KeyEventDispatcher {
-        @Override
-        public boolean dispatchKeyEvent(KeyEvent e) {
-            if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_X)
-                System.exit(0);
-            return false;
-        }
+        aplikacjaMenu.add(wylogujMenuItem);
+        aplikacjaMenu.add(zamknijItem);
+
+        return menuBar;
     }
 }

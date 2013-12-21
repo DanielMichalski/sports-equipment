@@ -3,7 +3,6 @@ package ui.admin.equipment.view.euqipment_form;
 import model.*;
 import ui.admin.equipment.controller.EquipmentController;
 import ui.admin.equipment.models.TypSprzetuComboBoxModel;
-import util.Const;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -20,6 +19,7 @@ public class FormPanel extends JPanel {
     private JRadioButton nartyRB;
 
     private JComboBox rodzajSprzetu;
+    private JSpinner iloscSztukSpinner;
 
     public FormPanel() {
         setUpPanel();
@@ -27,8 +27,7 @@ public class FormPanel extends JPanel {
     }
 
     private void setUpPanel() {
-        GridLayout layout = new GridLayout(6, 2);
-        layout.setVgap(15);
+        GridLayout layout = new GridLayout(6, 2, 10, 15);
         setLayout(layout);
         setBorder(new TitledBorder("Dodawanie sprzętu"));
     }
@@ -54,6 +53,9 @@ public class FormPanel extends JPanel {
         JLabel zawodLabel = new JLabel("Typ sprzętu");
         rodzajSprzetu = new JComboBox<TypSprzetu>(new TypSprzetuComboBoxModel());
 
+        JLabel iloscSztukLb = new JLabel("Ilość sztuk");
+        iloscSztukSpinner = new JSpinner();
+
         add(markaLbl);
         add(markaTF);
 
@@ -66,6 +68,9 @@ public class FormPanel extends JPanel {
         add(zawodLabel);
         add(rodzajSprzetu);
 
+        add(iloscSztukLb);
+        add(iloscSztukSpinner);
+
         presenter.setFormPanel(this);
     }
 
@@ -74,7 +79,8 @@ public class FormPanel extends JPanel {
                 markaTF.getText(),
                 modelTF.getText(),
                 getPrzeznaczenieFromFields(),
-                (TypSprzetu) rodzajSprzetu.getSelectedItem());
+                (TypSprzetu) rodzajSprzetu.getSelectedItem(),
+                Integer.parseInt(iloscSztukSpinner.getValue().toString()));
     }
 
     private Przeznaczenie getPrzeznaczenieFromFields() {
@@ -89,6 +95,7 @@ public class FormPanel extends JPanel {
         modelTF.setText("");
         snowboardRB.setSelected(true);
         rodzajSprzetu.setSelectedIndex(0);
+        iloscSztukSpinner.setValue(0);
     }
 
     public void fillForm(Equimpent equimpent) {
@@ -96,7 +103,8 @@ public class FormPanel extends JPanel {
         modelTF.setText(equimpent.getModel());
         if (equimpent.getPrzeznaczenie() == Przeznaczenie.Narty) nartyRB.setSelected(true);
         else snowboardRB.setSelected(true);
-        rodzajSprzetu.getModel().setSelectedItem(equimpent.getOkresWypozyczenia());
+        rodzajSprzetu.getModel().setSelectedItem(equimpent.getTypSprzetu());
+        iloscSztukSpinner.setValue(equimpent.getIloscSztuk());
     }
 
     public JTextField getMarkaTF() {
@@ -105,5 +113,9 @@ public class FormPanel extends JPanel {
 
     public JTextField getModelTF() {
         return modelTF;
+    }
+
+    public JSpinner getIloscSztukSpinner() {
+        return iloscSztukSpinner;
     }
 }
