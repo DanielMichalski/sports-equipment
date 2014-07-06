@@ -19,8 +19,6 @@ public class AdminChoosePresenter {
     class ClientBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //AdminChoosePresenter.this.adminChoose.dispose();
-
             RegistrationFrame frame = new RegistrationFrame();
             frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             frame.setVisible(true);
@@ -30,8 +28,6 @@ public class AdminChoosePresenter {
     class EquipmentBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //AdminChoosePresenter.this.adminChoose.dispose();
-
             EquipmentFrame frame = new EquipmentFrame();
             frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             frame.setVisible(true);

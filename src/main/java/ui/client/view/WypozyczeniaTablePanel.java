@@ -1,22 +1,21 @@
 package ui.client.view;
 
-import ui.admin.equipment.controller.EquipmentController;
-import ui.admin.equipment.models.EquipmentTableModel;
-import ui.admin.equipment.view.equipment_table.TableBtnPanel;
+import ui.client.controller.WypozyczeniaPresenter;
 import ui.client.model.WypozyczeniaTableModel;
 import util.Const;
 
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Author: Daniel
- */
 public class WypozyczeniaTablePanel extends JPanel {
+    private WypozyczeniaPresenter presenter;
+
     private JTable rezerwacjeTabela;
     private JButton usunBtn;
 
-    public WypozyczeniaTablePanel() {
+    public WypozyczeniaTablePanel(WypozyczeniaPresenter presenter) {
+        this.presenter = presenter;
+
         setUpPanel();
         initComponents();
     }
@@ -27,7 +26,7 @@ public class WypozyczeniaTablePanel extends JPanel {
     }
 
     private void initComponents() {
-        WypozyczeniaTableModel wypozyczeniaTableModel = new WypozyczeniaTableModel();
+        WypozyczeniaTableModel wypozyczeniaTableModel = new WypozyczeniaTableModel(presenter.odczytajDaneZPliku());
         rezerwacjeTabela = new JTable(wypozyczeniaTableModel);
         rezerwacjeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 

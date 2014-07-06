@@ -5,7 +5,7 @@ import ui.login.controller.LoginPresenter;
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginFrame extends JFrame implements ClosableFrame  {
+public class LoginFrame extends JFrame implements ClosableFrame {
 
     public static final int WIDTH = 240;
     public static final int HEIGHT = 140;

@@ -1,16 +1,21 @@
 package model;
 
-public class Wypozyczenie {
+import java.io.Serializable;
+import java.util.Date;
+
+public class Wypozyczenie implements Serializable {
     private String nazwisko;
     private Equimpent equimpent;
     private int ileSztuk;
     private CzasWypozyczenia czasWypozyczenia;
+    private Date date;
 
-    public Wypozyczenie(String nazwisko, Equimpent equimpent, int ileSztuk, CzasWypozyczenia czasWypozyczenia) {
+    public Wypozyczenie(String nazwisko, Equimpent equimpent, int ileSztuk, CzasWypozyczenia czasWypozyczenia, Date date) {
         this.nazwisko = nazwisko;
         this.equimpent = equimpent;
         this.ileSztuk = ileSztuk;
         this.czasWypozyczenia = czasWypozyczenia;
+        this.date = date;
     }
 
     public String getNazwisko() {
@@ -27,6 +32,10 @@ public class Wypozyczenie {
 
     public CzasWypozyczenia getCzasWypozyczenia() {
         return czasWypozyczenia;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     @Override

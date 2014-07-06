@@ -6,9 +6,6 @@ import ui.client.model.CzasWypozyczeniaModel;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Author: Daniel
- */
 public class WypozyczeniaFormPanel extends JPanel {
     private JComboBox<CzasWypozyczenia> czasWypozyczeniaCB;
     private JSpinner iloscSztukSpinner;

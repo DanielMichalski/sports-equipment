@@ -2,10 +2,8 @@ package ui.login.controller;
 
 import dao.ClientsDao;
 import ui.admin.admin_choose.view.AdminChooseFrame;
-import ui.admin.equipment.view.EquipmentFrame;
 import ui.client.view.WypozyczeniaFrame;
 import ui.login.view.ClosableFrame;
-import ui.login.view.LoginFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -42,7 +40,7 @@ public class LoginPresenter {
         if (lastName.equals("admin") && password.equals("admin")) {
             closableFrame.closeFrame();
             loginUser();
-        } else if(ClientsDao.isClientExist(lastName, password)) {
+        } else if (ClientsDao.isClientExist(lastName, password)) {
             closableFrame.closeFrame();
             showReservationFrame();
         } else {

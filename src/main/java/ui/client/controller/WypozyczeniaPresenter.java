@@ -1,5 +1,7 @@
 package ui.client.controller;
 
+import dao.EquipmentsDao;
+import dao.WypozyczeniaDao;
 import model.CzasWypozyczenia;
 import model.Equimpent;
 import model.Wypozyczenie;
@@ -8,12 +10,10 @@ import ui.client.model.ListaTowarowModel;
 import ui.client.model.WypozyczeniaTableModel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.util.Date;
+import java.util.List;
 
-/**
- * Author: Daniel
- */
 public class WypozyczeniaPresenter {
     private JComboBox<Equimpent> equimpentCB;
     private JComboBox<CzasWypozyczenia> czasWypozyczeniaCB;
@@ -23,6 +23,28 @@ public class WypozyczeniaPresenter {
 
     public WypozyczeniaPresenter(String nazwisko) {
         this.nazwisko = nazwisko;
+    }
+
+    public void zapiszDaneDoPliku() {
+        WypozyczeniaTableModel model = (WypozyczeniaTableModel) rezerwacjeTabela.getModel();
+        List<Wypozyczenie> wypozyczenia = model.getWypozyczenia();
+        WypozyczeniaDao.zapiszDaneDoPliku(wypozyczenia);
+
+        ListaTowarowModel model1 = (ListaTowarowModel) equimpentCB.getModel();
+        EquipmentsDao.zapiszDaneDoPliku(model1.getEquimpentList());
+    }
+
+    public List<Wypozyczenie> odczytajDaneZPliku() {
+        return WypozyczeniaDao.odczytajDaneZPliku();
+    }
+
+    public WindowListener getWindowListener() {
+        return new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                zapiszDaneDoPliku();
+            }
+        };
     }
 
     class WypozyczBtnListener implements ActionListener {
@@ -51,9 +73,10 @@ public class WypozyczeniaPresenter {
                                 (WypozyczeniaTableModel) rezerwacjeTabela.getModel();
 
                         Wypozyczenie wypozyczenie =
-                                new Wypozyczenie(nazwisko, equipment, ilosWybranychSztuk, czasWypozyczenia);
+                                new Wypozyczenie(nazwisko, equipment, ilosWybranychSztuk, czasWypozyczenia, new Date());
 
                         model.dodajWypozyczenie(wypozyczenie);
+                        equimpentCBModel.odejmijIloscSprzetu(equimpentCB.getSelectedIndex(), ilosWybranychSztuk);
                         clearForm();
                     }
                 } else {
@@ -97,10 +120,29 @@ public class WypozyczeniaPresenter {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
+    private void showInfoNoRowSelected() {
+        JOptionPane.showMessageDialog(
+                null,
+                "Wybierz wiersz, który chcesz usunąć",
+                "Informacja",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
+
     class UsunBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("usun");
+            int selectedRow = rezerwacjeTabela.getSelectedRow();
+
+            if (selectedRow > -1) {
+                WypozyczeniaTableModel model = (WypozyczeniaTableModel) rezerwacjeTabela.getModel();
+                Wypozyczenie wypozyczenie = model.getSelectedRow(selectedRow);
+                model.remove(selectedRow);
+
+                ListaTowarowModel equimpentCBModel = (ListaTowarowModel) equimpentCB.getModel();
+                equimpentCBModel.dodajIloscSprzetu(wypozyczenie.getEquimpent(), wypozyczenie.getIleSztuk());
+            } else {
+                showInfoNoRowSelected();
+            }
         }
     }
 

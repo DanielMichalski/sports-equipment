@@ -28,7 +28,7 @@ public class ClientsDao {
             BufferedInputStream bis = new BufferedInputStream(fis);
             ObjectInputStream ois = new ObjectInputStream(bis);
 
-            clients = (ArrayList<Client>)ois.readObject();
+            clients = (ArrayList<Client>) ois.readObject();
             return clients;
         } catch (Exception e) {
             return clients;

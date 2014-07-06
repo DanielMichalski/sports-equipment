@@ -1,11 +1,9 @@
 package ui.admin.clients_registration.controller;
 
 import dao.ClientsDao;
-import javafx.application.Application;
 import model.Client;
 import ui.admin.clients_registration.models.ClientTableModel;
 import ui.admin.clients_registration.view.client_data.FormPanel;
-import ui.login.view.LoginFrame;
 import util.Const;
 
 import javax.swing.*;
@@ -13,8 +11,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -73,12 +69,10 @@ public class RegistrationController {
         if (searchTF.getText().equals("")) {
             clientTableModel.resetFilter();
             clientTableModel.sortClients();
-        }
-        else if (tokenizer.countTokens() == 1) {
+        } else if (tokenizer.countTokens() == 1) {
             String token = tokenizer.nextToken();
             clientTableModel.refilter(token, token);
-        }
-        else if (tokenizer.countTokens() == 2) {
+        } else if (tokenizer.countTokens() == 2) {
             String imie = tokenizer.nextToken();
             String nazwisko = tokenizer.nextToken();
             clientTableModel.refilter(imie, nazwisko);

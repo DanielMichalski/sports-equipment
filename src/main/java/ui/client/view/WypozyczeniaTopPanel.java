@@ -5,9 +5,6 @@ import ui.client.model.ListaTowarowModel;
 
 import javax.swing.*;
 
-/**
- * Author: Daniel
- */
 public class WypozyczeniaTopPanel extends JPanel {
     JComboBox<Equimpent> equimpentCB;
 

@@ -1,7 +1,6 @@
 package ui.admin.equipment.controller;
 
 import dao.EquipmentsDao;
-import model.Client;
 import model.Equimpent;
 import ui.admin.equipment.models.EquipmentTableModel;
 import ui.admin.equipment.view.euqipment_form.FormPanel;
@@ -12,8 +11,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentController {
@@ -31,7 +28,7 @@ public class EquipmentController {
         int selectedRowIndex = clientTable.getSelectedRow();
         int wybranaIlosc = Integer.parseInt(formPanel.getIloscSztukSpinner().getValue().toString());
 
-        if (formPanel.getMarkaTF().getText().equals("")||
+        if (formPanel.getMarkaTF().getText().equals("") ||
                 formPanel.getModelTF().getText().equals("") ||
                 wybranaIlosc <= 0) {
             JOptionPane.showMessageDialog(
@@ -66,6 +63,7 @@ public class EquipmentController {
 
     public void onCancelClick() {
         formPanel.clearForm();
+        clientTable.clearSelection();
     }
 
     public void onAddClick() {

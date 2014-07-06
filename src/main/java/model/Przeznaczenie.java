@@ -1,6 +1,6 @@
 package model;
 
-public enum  Przeznaczenie {
+public enum Przeznaczenie {
     Narty,
     Snowobard
 }

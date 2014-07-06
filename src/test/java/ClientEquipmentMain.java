@@ -2,9 +2,6 @@ import ui.client.view.WypozyczeniaFrame;
 
 import javax.swing.*;
 
-/**
- * Author: Daniel
- */
 public class ClientEquipmentMain {
     public static void main(String[] args) {
         WypozyczeniaFrame wypozyczeniaFrame = new WypozyczeniaFrame("Kowalski");

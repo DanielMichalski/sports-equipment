@@ -47,7 +47,7 @@ public class EquipmentTableModel extends AbstractTableModel {
 
         switch (columnIndex) {
             case 0:
-                return equimpent.getModel() + " " + equimpent.getMarka();
+                return equimpent.getMarka() + " " + equimpent.getModel();
             case 1:
                 return equimpent.getPrzeznaczenie().toString();
             case 2:

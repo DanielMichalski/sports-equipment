@@ -10,6 +10,7 @@ public class Main {
             @Override
             public void run() {
                 Utils.setWindowsLookAndFeel();
+
                 LoginFrame loginFrame = new LoginFrame();
                 loginFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 loginFrame.setVisible(true);

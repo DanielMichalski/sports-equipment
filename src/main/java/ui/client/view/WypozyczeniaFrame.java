@@ -1,6 +1,7 @@
 package ui.client.view;
 
 import ui.client.controller.WypozyczeniaPresenter;
+import ui.login.view.LoginFrame;
 import util.Const;
 import util.Utils;
 
@@ -8,14 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
-/**
- * Author: Daniel
- */
 public class WypozyczeniaFrame extends JDialog {
-    public static final int DEFAULT_WIDTH = 750;
+    public static final int DEFAULT_WIDTH = 850;
     public static final int DEFAULT_HEIGHT = 320;
 
     private String nazwisko;
@@ -29,19 +25,12 @@ public class WypozyczeniaFrame extends JDialog {
     }
 
     private void setUpFrame() {
-        setTitle("Wyporzyczanie sprzętu");
+        setTitle("Wyporzyczanie sprzętu - klient " + nazwisko);
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         setLocationRelativeTo(null);
         setResizable(false);
         Utils.setWindowsLookAndFeel();
         setModal(true);
-
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-               // EquipmentController.getInstance().zapiszDaneDoPliku();
-            }
-        });
     }
 
     private void initComponents() {
@@ -49,7 +38,7 @@ public class WypozyczeniaFrame extends JDialog {
 
         WypozyczeniaTopPanel wypozyczeniaTopPanel = new WypozyczeniaTopPanel();
         WypozyczeniaFormPanel clientFormPanel = new WypozyczeniaFormPanel();
-        WypozyczeniaTablePanel clientCenterPanel = new WypozyczeniaTablePanel();
+        WypozyczeniaTablePanel clientCenterPanel = new WypozyczeniaTablePanel(presenter);
 
         add(wypozyczeniaTopPanel, BorderLayout.NORTH);
         add(clientFormPanel, BorderLayout.WEST);
@@ -61,6 +50,8 @@ public class WypozyczeniaFrame extends JDialog {
         presenter.setRezerwacjeTabela(clientCenterPanel.getRezerwacjeTabela());
         presenter.setWypozyczButton(clientFormPanel.getWypozyczButton());
         presenter.setUsunBtn(clientCenterPanel.getUsunBtn());
+
+        addWindowListener(presenter.getWindowListener());
     }
 
     private JMenuBar createMenuBar() {
@@ -69,6 +60,18 @@ public class WypozyczeniaFrame extends JDialog {
         JMenu aplikacjaMenu = new JMenu(Const.Menu.APPLICATION_MENU);
         menuBar.add(aplikacjaMenu);
 
+        JMenuItem wylogujMenuItem = new JMenuItem("Wyloguj");
+        wylogujMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+
+                LoginFrame loginFrame = new LoginFrame();
+                loginFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+                loginFrame.setVisible(true);
+            }
+        });
+
         JMenuItem zamknijItem = new JMenuItem(Const.MenuItem.CLOSE_MENU_ITEM);
         zamknijItem.addActionListener(new ActionListener() {
             @Override
@@ -76,6 +79,7 @@ public class WypozyczeniaFrame extends JDialog {
                 System.exit(0);
             }
         });
+        aplikacjaMenu.add(wylogujMenuItem);
         aplikacjaMenu.add(zamknijItem);
         return menuBar;
     }

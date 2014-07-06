@@ -47,9 +47,13 @@ public class Equimpent implements Serializable {
         return iloscSztuk;
     }
 
+    public void setIloscSztuk(int iloscSztuk) {
+        this.iloscSztuk = iloscSztuk;
+    }
+
     @Override
     public String toString() {
-        return  marka + " " +
+        return marka + " " +
                 model + ", " +
                 "ilość dostępnych sztuk: " + iloscSztuk;
     }

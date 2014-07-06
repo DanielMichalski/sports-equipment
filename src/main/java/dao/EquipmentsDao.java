@@ -28,11 +28,10 @@ public class EquipmentsDao {
             BufferedInputStream bis = new BufferedInputStream(fis);
             ObjectInputStream ois = new ObjectInputStream(bis);
 
-            equimpents = (ArrayList<Equimpent>)ois.readObject();
+            equimpents = (ArrayList<Equimpent>) ois.readObject();
             return equimpents;
         } catch (Exception e) {
             return equimpents;
         }
     }
-
 }

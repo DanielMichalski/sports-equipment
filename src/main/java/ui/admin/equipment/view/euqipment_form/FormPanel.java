@@ -1,6 +1,8 @@
 package ui.admin.equipment.view.euqipment_form;
 
-import model.*;
+import model.Equimpent;
+import model.Przeznaczenie;
+import model.TypSprzetu;
 import ui.admin.equipment.controller.EquipmentController;
 import ui.admin.equipment.models.TypSprzetuComboBoxModel;
 
